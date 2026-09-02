@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "x2notion"
+version = "0.1.0"
+description = "Privacy-safe X (Twitter) posts, likes, and bookmarks to Notion synchronization runtime"
+requires-python = ">=3.11"
+dependencies = [
+    "twikit>=2.2.0",
+    "notion-client>=3.0.0",
+    "requests>=2.32.3",
+    "python-dateutil>=2.9.0"
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.3.0", "ruff>=0.9.0"]
+
+[project.scripts]
+x2notion = "x2notion.sync:cli"
+
+[tool.setuptools.packages.find]
+include = ["x2notion*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
